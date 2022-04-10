@@ -1,0 +1,31 @@
+@import '../_var';
+@import '../_mixin';
+
+.header {
+    width: 100%;
+    border-bottom: 4px solid $MAIN_COLOR;
+
+    @include desktop {
+        //
+    }
+
+    .header__list {
+        margin: 0 auto;
+        padding: 16px;
+        width: 100%;
+        max-width: $CONTENTS_WIDTH;
+        display: flex;
+        justify-content: right;
+    }
+
+    .header__listItem {
+        & + .header__listItem {
+            margin: 0 0 0 28px;
+        }
+
+        a {
+            text-decoration: none;
+            color: $TEXT_COLOR;
+        }
+    }
+}

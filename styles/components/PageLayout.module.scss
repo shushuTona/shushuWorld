@@ -1,0 +1,17 @@
+@import '../_var';
+@import '../_mixin';
+
+.pageLayout {
+    margin: 0 auto;
+    padding: 28px 16px;
+    width: 100%;
+    max-width: $CONTENTS_WIDTH;
+
+    .pageLayout__contents {
+        border-top: 2px solid $MAIN_COLOR;
+    }
+
+    @include desktop {
+        //
+    }
+}

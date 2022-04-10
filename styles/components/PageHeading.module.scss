@@ -1,0 +1,14 @@
+@import '../_var';
+@import '../_mixin';
+
+.pageHeading {
+    margin: 0 0 28px;
+    font-family: 'Bebas Neue';
+    font-weight: normal;
+    letter-spacing: 0.04em;
+    font-size: 28px;
+
+    @include desktop {
+        font-size: 48px;
+    }
+}
