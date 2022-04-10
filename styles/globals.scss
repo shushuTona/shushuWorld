@@ -2,20 +2,35 @@
 @import './_mixin';
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  color: $TEXT_COLOR;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    color: $TEXT_COLOR;
+    letter-spacing: 0.02em;
+
+    @include desktop {
+        font-size: 16px;
+    }
 }
 
 a {
-  color: $LINK_COLOR;
+    color: $LINK_COLOR;
 
-  @include hover {
-    text-decoration: none;
-  }
+    @include hover {
+        text-decoration: none;
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
 }
