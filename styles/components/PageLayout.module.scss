@@ -2,16 +2,22 @@
 @import '../_mixin';
 
 .pageLayout {
-    margin: 0 auto;
-    padding: 28px 16px;
-    width: 100%;
-    max-width: $CONTENTS_WIDTH;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 
-    .pageLayout__contents {
-        border-top: 2px solid $MAIN_COLOR;
-    }
+    .pageLayout__main {
+        margin: 0 auto;
+        padding: 28px 16px;
+        width: 100%;
+        max-width: $CONTENTS_WIDTH;
 
-    @include desktop {
-        //
+        .pageLayout__contents {
+            border-top: 4px solid $MAIN_COLOR;
+        }
+
+        @include desktop {
+            //
+        }
     }
 }
