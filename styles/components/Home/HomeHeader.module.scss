@@ -1,0 +1,77 @@
+@import '../../_var';
+@import '../../_mixin';
+
+@keyframes HeaderFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.homeHeader {
+    margin: 0 auto;
+    width: max-content;
+    position: fixed;
+    bottom: 25vh;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    animation-name: HeaderFadeIn;
+    animation-duration: 1000ms;
+    animation-delay: 3000ms;
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+
+    .homeHeader__list {
+        width: max-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .homeHeader__listItem {
+        display: inline-block;
+
+        & + .homeHeader__listItem {
+            margin: 20px 0 0;
+        }
+
+        a {
+            color: $TEXT_COLOR;
+            text-decoration: none;
+            font-size: 24px;
+            font-family: 'Bebas Neue';
+            letter-spacing: 0.2em;
+            position: relative;
+
+            &:after {
+                content: "";
+                margin: auto;
+                width: 120%;
+                height: 2px;
+                background-color: $MAIN_COLOR;
+                transform: scaleX(0);
+                transform-origin: top right;
+                transition: transform 300ms;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: -5px;
+            }
+
+            @include hover{
+                &:after {
+                    transform: scaleX(100%);
+                }
+            }
+        }
+    }
+
+    @include desktop {
+        //
+    }
+}

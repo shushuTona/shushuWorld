@@ -1,4 +1,4 @@
-import styles from '@/styles/components/HomeHeading.module.scss';
+import styles from '@/styles/components/Home/HomeHeading.module.scss';
 
 const HomeHeading = () => {
     return (
