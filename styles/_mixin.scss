@@ -1,0 +1,17 @@
+@mixin desktop {
+    @media (hover: hover) {
+        @content;
+    }
+}
+
+@mixin hover {
+    &:focus {
+        @content;
+    }
+
+    @include desktop {
+        &:hover {
+            @content;
+        }
+    }
+}
