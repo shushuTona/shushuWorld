@@ -6,4 +6,7 @@ module.exports = {
     return config
   },
   reactStrictMode: true,
+  experimental: {
+    optimizeFonts: true,
+  },
 }
