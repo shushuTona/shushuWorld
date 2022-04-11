@@ -1,0 +1,50 @@
+@import '../_var';
+@import '../_mixin';
+
+.aboutList {
+    margin: 28px 0 0;
+
+    .aboutList__item {
+        padding: 16px 0;
+
+        @include desktop {
+            display: flex;
+            align-items: center;
+        }
+
+        & + .aboutList__item {
+            border-top: 2px solid $BORDER_COLOR;
+        }
+
+        &:first-of-type {
+            padding-top: 0;
+        }
+
+        &:last-of-type {
+            padding-bottom: 0;
+        }
+
+        .aboutList__title {
+            @include desktop {
+                min-width: 280px;
+                flex-shrink: 0;
+            }
+        }
+
+        .aboutList__contents {
+            margin: 16px 0 0;
+            padding: 0;
+            width: 100%;
+
+            @include desktop {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.heading {
+    margin: 36px 0 24px;
+    font-size: 24px;
+    font-weight: normal;
+}
