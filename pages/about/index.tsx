@@ -15,7 +15,10 @@ const About = () => {
     ];
 
     return (
-        <PageLayout headingText="About">
+        <PageLayout
+            title="About"
+            headingText="About"
+        >
             <div>
                 <h2 className={styles.heading}>自己紹介</h2>
                 <p>現在都内の事業会社でWebエンジニアとして働いています。</p>
