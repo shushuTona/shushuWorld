@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@types/react-transition-group": "^4.4.4",
+    "glob": "^8.0.1",
     "gray-matter": "^4.0.3",
     "next": "11.0.1",
     "react": "17.0.2",
@@ -20,6 +21,7 @@
     "remark-html": "^13.0.2"
   },
   "devDependencies": {
+    "@types/glob": "^7.2.0",
     "@types/react": "17.0.16",
     "eslint": "7.32.0",
     "eslint-config-next": "11.0.1",
