@@ -1,6 +1,22 @@
+import { ParsedUrlQuery } from 'node:querystring'
 import fs from 'fs';
-import { join } from 'path';
+import { join, parse } from 'path';
+import glob from 'glob';
 import matter from 'gray-matter';
+
+export type PostItem = {
+    title: string;
+    date: string;
+    content: string;
+    year: string;
+    mdfileName: string;
+    tags: string[];
+}
+
+export interface Params extends ParsedUrlQuery {
+    year: string;
+    mdfileName: string;
+}
 
 const postDirectory = join( process.cwd(), '_blog' );
 
@@ -12,7 +28,9 @@ const postDirectory = join( process.cwd(), '_blog' );
  * @returns string[]
  */
 const getPostMdFileList = (): string[] => {
-    return fs.readdirSync( postDirectory );
+    const mdDirList = fs.readdirSync( postDirectory );
+
+    return mdDirList;
 }
 
 /**
@@ -20,51 +38,82 @@ const getPostMdFileList = (): string[] => {
  *
  * 
  */
-const getPostByMdfile = ( mdfileName: string, fields: string[] = [] ) => {
-    // mdファイル名から拡張子部分（.md）を削除
-    const realMdfileName = mdfileName.replace( /\.md$/, '' );
-
-    const fullPath = join( postDirectory, `${realMdfileName}.md` );
+const getPostByMdfile = ( mdFileObj: Params, fields: string[] = [] ) => {
+    // mdファイル名を取得
+    const year = mdFileObj.year;
+    const mdfile = mdFileObj.mdfileName + '.md';
 
     // mdファイル内容を取得
+    const fullPath = join( postDirectory, year, mdfile );
+
+    // 記事内容を取得
     const fileContents = fs.readFileSync( fullPath, 'utf8' );
 
     // mdファイルのメタ内容と記事内容を取得
     const { data, content } = matter( fileContents );
 
-    const items: any = {}
+    const postItem: PostItem = {
+        title: '',
+        date: '',
+        content: '',
+        year: '',
+        mdfileName: '',
+        tags: [],
+    }
     fields.forEach( ( field ) => {
+        if ( field === 'year' ) {
+            postItem[field] = year;
+        }
+
         if ( field === 'mdfileName' ) {
-            items[field] = realMdfileName;
+            postItem[field] = mdFileObj.mdfileName;
         }
 
         if ( field === 'content' ) {
-            items[field] = content;
+            postItem[field] = content;
         }
 
-        if ( typeof data[field] !== 'undefined' ) {
-            items[field] = data[field]
+        if (
+            field === 'title' ||
+            field === 'date' ||
+            field === 'tags'
+        ) {
+            postItem[field] = data[field]
         }
     } );
 
-    return items;
+    return postItem;
 }
 
 /**
  * getAllPosts
  *
- * 
+ * 記事ページの西暦とファイル名の一覧を取得する
  *
  * @param fields string[]
- * @returns 
+ * @returns
  */
 const getAllPosts = ( fields: string[] = [] ) => {
     // 対象ディレクトリに存在する記事ページ用mdファイル名一覧を取得
-    const mdFileNameList = getPostMdFileList();
+    const mdDirList = getPostMdFileList();
 
-    const posts = mdFileNameList
-                                .map( ( mdfileName ) => {
-                                    return getPostByMdfile( mdfileName, fields );
+    const mdFileList: Params[] = [];
+    mdDirList.forEach( ( dirName ) => {
+        const mdFilePathList = glob.sync( './_blog/' + dirName + '/*.md' );
+        mdFilePathList.forEach( ( mdFilePath ) => {
+            const parseFile = parse( mdFilePath );
+
+            mdFileList.push( {
+                year: dirName,
+                mdfile: parseFile.base,
+                mdfileName: parseFile.name,
+            } );
+        } );
+    } );
+
+    const posts = mdFileList
+                                .map( ( mdFileObj ) => {
+                                    return getPostByMdfile( mdFileObj, fields );
                                 } )
                                 .sort( ( post1, post2 ) => {
                                     return post1.date > post2.date ? -1 : 1;
