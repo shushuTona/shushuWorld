@@ -5,17 +5,17 @@
     width: 100%;
     border-bottom: 4px solid $MAIN_COLOR;
 
-    @include desktop {
-        //
-    }
-
     .header__list {
         margin: 0 auto;
         padding: 16px;
         width: 100%;
         max-width: $CONTENTS_WIDTH;
         display: flex;
-        justify-content: right;
+        justify-content: center;
+
+        @include desktop {
+            justify-content: right;
+        }
     }
 
     .header__listItem {
@@ -24,8 +24,15 @@
         }
 
         a {
-            text-decoration: none;
             color: $TEXT_COLOR;
+            text-decoration: none;
+            font-family: 'Bebas Neue';
+            letter-spacing: 0.2em;
+            transition: color 300ms;
+
+            @include hover {
+                color: $MAIN_COLOR;
+            }
         }
     }
 }
