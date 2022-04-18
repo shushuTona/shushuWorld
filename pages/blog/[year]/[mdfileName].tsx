@@ -66,7 +66,7 @@ const PostPage: NextPage<PageProps> = ( { post }: any ) => {
         <>
             <Head>
                 <title>
-                    {post.title} | Next.js Blog Example with
+                    {post.title} : shushuTona - World
                 </title>
             </Head>
 
