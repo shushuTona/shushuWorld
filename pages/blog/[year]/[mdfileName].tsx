@@ -1,10 +1,11 @@
 import type { InferGetStaticPropsType, NextPage, GetStaticPaths, GetStaticPropsContext } from "next";
 import { useRouter } from 'next/router';
-import Head from 'next/head';
 import ErrorPage from 'next/error';
 
 import { getPostByMdfile, getAllPosts, PostItem, Params } from '@/lib/api';
 import { markdownToHtml } from '@/lib/markdownToHtml';
+
+import { PostPageLayout } from '@/components/blog/PostPageLayout';
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
     // 対象記事ページのmdファイル名一覧を取得
@@ -63,26 +64,7 @@ const PostPage: NextPage<PageProps> = ( { post } ) => {
     }
 
     return (
-        <>
-            <Head>
-                <title>
-                    {post.title} : shushuTona - World
-                </title>
-            </Head>
-
-            <ul>
-                {
-                    post.tags.map( ( tag: string ) => {
-                        return (
-                            <li key={tag}>{ tag }</li>
-                        )
-                    })
-                }
-            </ul>
-            <div
-                dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-        </>
+        <PostPageLayout post={post} />
     )
 }
 

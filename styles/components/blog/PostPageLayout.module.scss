@@ -1,0 +1,224 @@
+@import '../../_var';
+@import '../../_mixin';
+
+.postPageLayout {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    .postPageLayout__main {
+        margin: 0 auto;
+        padding: 32px 16px;
+        width: 100%;
+        max-width: $CONTENTS_WIDTH;
+
+        .postPageLayout__contents {
+            padding: 36px 0 0;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 4px solid $MAIN_COLOR;
+        }
+
+        .postPageLayout__date {
+            margin: 0 0 16px;
+        }
+
+        .postPageLayout__article {
+            width: calc(100% - 328px);
+
+            .postPageLayout__articleInner {
+                padding: 36px 0 0;
+
+                & > *:first-child {
+                    margin-top: 0;
+                }
+
+                & > *:last-child {
+                    margin-bottom: 0;
+                }
+
+                h2 {
+                    margin: 28px 0 32px;
+                    font-size: 28px;
+                    color: $MAIN_COLOR;
+                }
+
+                h3 {
+                    margin: 24px 0 28px;
+                    font-size: 24px;
+                    color: $LINK_COLOR;
+                }
+
+                hr {
+                    margin: 32px 0;
+                    border: none;
+                    border-top: 1px solid $BORDER_COLOR;
+                }
+
+                ul {
+                    margin: 24px 0;
+                }
+
+                li {
+                    padding: 0 0 0 16px;
+                    position: relative;
+
+                    &::before {
+                        content: "";
+                        width: 4px;
+                        height: 4px;
+                        background-color: $MAIN_COLOR;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 10px;
+                        left: 0;
+                    }
+
+                    & + li {
+                        margin-top: 8px;
+                    }
+
+                    ul {
+                        margin: 0;
+                    }
+                }
+
+                pre {
+                    margin: 32px 0;
+                    padding: 16px;
+                    color: #fff;
+                    background-color: #1a2638;
+                    border-radius: 8px;
+                    line-height: 1.2;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    word-break: normal;
+                    word-wrap: normal;
+                }
+
+                :global(pre[class*=language-]) {
+                    position: relative
+                }
+
+                :global(.token.namespace) {
+                    opacity: .7
+                }
+
+                :global(.token.cdata),
+                :global(.token.comment),
+                :global(.token.doctype),
+                :global(.token.prolog) {
+                    color: #94a1b3
+                }
+
+                :global(.language-css .token.string),
+                :global(.style .token.string),
+                :global(.token.attr-name),
+                :global(.token.boolean),
+                :global(.token.entity),
+                :global(.token.number),
+                :global(.token.operator),
+                :global(.token.string),
+                :global(.token.url) {
+                    color: #ffc56d
+                }
+
+                :global(.token.atrule),
+                :global(.token.attr-value),
+                :global(.token.deleted),
+                :global(.token.important),
+                :global(.token.keyword),
+                :global(.token.selector) {
+                    color: #ff8fa3
+                }
+
+                :global(.token.inserted) {
+                    color: #b4ff9b
+                }
+
+                :global(.token.deleted:not(.prefix)) {
+                    background: #da363233;
+                    color: inherit;
+                    display: block
+                }
+
+                :global(.token.prefix) {
+                    user-select: none
+                }
+
+                :global(.token.inserted:not(.prefix)) {
+                    background: #00921b33;
+                    color: inherit;
+                    display: block
+                }
+
+                :global(.token.prefix.unchanged) {
+                    display: none
+                }
+
+                :global(.token.unchanged>.token.prefix.unchanged) {
+                    display: inline
+                }
+
+                :global(.token.coord) {
+                    color: #aad4ff
+                }
+
+                :global(.token.regex),
+                :global(.token.statement) {
+                    color: #ffc56d
+                }
+
+                :global(.token.placeholder),
+                :global(.token.variable) {
+                    color: #fff
+                }
+
+                :global(.token.bold),
+                :global(.token.important),
+                :global(.token.statement) {
+                    font-weight: 700
+                }
+
+                :global(.token.punctuation) {
+                    color: #939bc1
+                }
+
+                :global(.token.entity) {
+                    cursor: help
+                }
+
+                :global(.token.italic) {
+                    font-style: italic
+                }
+
+                :global(.token.function),
+                :global(.token.property),
+                :global(.token.tag) {
+                    color: #38c7ff
+                }
+
+                :global(.token.attr-name) {
+                    color: #ff8fa3
+                }
+
+                :global(.token.attr-value),
+                :global(.token.script),
+                :global(.token.script .token.keyword),
+                :global(.token.style) {
+                    color: #ffc56d
+                }
+            }
+        }
+
+        .postPageLayout__side {
+            margin: 0 0 0 28px;
+            width: 300px;
+        }
+
+        @include desktop {
+            //
+        }
+    }
+}
