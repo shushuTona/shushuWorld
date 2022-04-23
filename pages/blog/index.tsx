@@ -1,3 +1,4 @@
+import type { NextPage, InferGetStaticPropsType } from 'next';
 import { getAllPosts } from '@/lib/api';
 import { PageLayout } from '@/components/PageLayout';
 import PostList from '@/components/blog/PostList';
@@ -19,7 +20,9 @@ export const getStaticProps = async () => {
     }
 }
 
-const Blog = ( { posts }: any ) => {
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Blog: NextPage<Props> = ( { posts } ) => {
     return (
         <PageLayout
             title="Blog"

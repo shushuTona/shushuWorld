@@ -1,4 +1,4 @@
-import type { InferGetStaticPropsType, NextPage, GetStaticProps, GetStaticPaths } from "next";
+import type { InferGetStaticPropsType, NextPage, GetStaticPaths, GetStaticPropsContext } from "next";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import ErrorPage from 'next/error';
@@ -28,9 +28,9 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
     }
 }
 
-export const getStaticProps = async ({ params }: any) => {
+export const getStaticProps = async ( { params }: GetStaticPropsContext<Params> ) => {
     // 対象記事ページのmdファイル名を基に、記事のタイトル・日付・内容を取得
-    const post = getPostByMdfile( params, [
+    const post: PostItem = getPostByMdfile( params!, [
         'year',
         'mdfileName',
         'title',
@@ -53,7 +53,7 @@ export const getStaticProps = async ({ params }: any) => {
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const PostPage: NextPage<PageProps> = ( { post }: any ) => {
+const PostPage: NextPage<PageProps> = ( { post } ) => {
     const router = useRouter();
     if (
         !router.isFallback &&
