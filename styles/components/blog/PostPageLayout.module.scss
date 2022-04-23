@@ -25,7 +25,9 @@
         }
 
         .postPageLayout__article {
-            width: calc(100% - 328px);
+            @include desktop {
+                width: calc(100% - 328px);
+            }
 
             .postPageLayout__articleInner {
                 padding: 36px 0 0;
@@ -38,16 +40,22 @@
                     margin-bottom: 0;
                 }
 
+                p {
+                    margin: 16px 0;
+                }
+
                 h2 {
-                    margin: 28px 0 32px;
+                    margin: 32px 0 24px;
                     font-size: 28px;
                     color: $MAIN_COLOR;
+                    font-weight: normal;
                 }
 
                 h3 {
-                    margin: 24px 0 28px;
+                    margin: 28px 0 20px;
                     font-size: 24px;
                     color: $LINK_COLOR;
+                    font-weight: normal;
                 }
 
                 hr {
@@ -121,7 +129,7 @@
                 :global(.token.operator),
                 :global(.token.string),
                 :global(.token.url) {
-                    color: #ffc56d
+                    color: #2691fb;
                 }
 
                 :global(.token.atrule),
@@ -130,7 +138,7 @@
                 :global(.token.important),
                 :global(.token.keyword),
                 :global(.token.selector) {
-                    color: #ff8fa3
+                    color: #fb8a26
                 }
 
                 :global(.token.inserted) {
@@ -196,7 +204,7 @@
                 :global(.token.function),
                 :global(.token.property),
                 :global(.token.tag) {
-                    color: #38c7ff
+                    color: #26fb52
                 }
 
                 :global(.token.attr-name) {
@@ -213,12 +221,13 @@
         }
 
         .postPageLayout__side {
-            margin: 0 0 0 28px;
-            width: 300px;
-        }
+            display: none;
 
-        @include desktop {
-            //
+            @include desktop {
+                display: block;
+                margin: 0 0 0 28px;
+                width: 300px;
+            }
         }
     }
 }
