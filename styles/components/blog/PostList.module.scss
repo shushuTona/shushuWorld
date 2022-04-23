@@ -2,7 +2,7 @@
 @import '../../_mixin';
 
 .postList {
-    margin-top: 32px;
+    margin-top: 36px;
     display: flex;
     flex-wrap: wrap;
 
@@ -77,8 +77,8 @@
 
         .postList__tag {
             margin: 8px 0 0 8px;
-            padding: 4px 8px;
-            line-height: 1.5;
+            padding: 10px 8px 12px;
+            line-height: 0;
             border: 1px solid $TEXT_COLOR;
             border-radius: 8px;
             transition: border-color 300ms;
