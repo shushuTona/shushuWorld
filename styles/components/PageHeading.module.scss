@@ -1,14 +1,27 @@
 @import '../_var';
 @import '../_mixin';
 
-.pageHeading {
+@mixin heading {
     margin: 0 0 28px;
-    font-family: 'Bebas Neue';
+    width: 100%;
     font-weight: normal;
     letter-spacing: 0.04em;
     font-size: 28px;
+    line-height: 1.2;
 
     @include desktop {
-        font-size: 48px;
+        font-size: 32px;
     }
+}
+
+.pageHeading {
+    @include heading();
+
+    font-family: 'Bebas Neue';
+}
+
+.postPageHeading {
+    @include heading();
+
+    font-family: 'Noto Sans JP', sans-serif;
 }
