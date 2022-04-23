@@ -1,0 +1,19 @@
+@import '../../_var';
+@import '../../_mixin';
+
+.postTagList {
+    .postTagList__inner {
+        margin: -8px 0 0 -8px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .postTagList__tag {
+        margin: 8px 0 0 8px;
+        padding: 10px 8px 12px;
+        line-height: 0;
+        border: 1px solid $TEXT_COLOR;
+        border-radius: 8px;
+        transition: border-color 300ms;
+    }
+}
