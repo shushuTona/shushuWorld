@@ -1,20 +1,40 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import styles from '@/styles/components/Header.module.scss';
 
+const navList = [
+    {
+        path: '/',
+        pageName: 'Home'
+    },
+    {
+        path: '/about',
+        pageName: 'About'
+    },
+    {
+        path: '/blog',
+        pageName: 'Blog'
+    },
+];
+
 const Header = () => {
+    const router = useRouter();
+
     return (
         <header className={styles.header}>
             <ul className={styles.header__list}>
-                <li className={styles.header__listItem}>
-                    <Link href="/">Home</Link>
-                </li>
-                <li className={styles.header__listItem}>
-                    <Link href="/about">About</Link>
-                </li>
-                <li className={styles.header__listItem}>
-                    <Link href="/blog">Blog</Link>
-                </li>
+                {
+                    navList.map( ( item ) => {
+                        return (
+                            <li className={styles.header__listItem} key={item.pageName}>
+                                <Link href={item.path}>
+                                    <a className={router.pathname === item.path ? 'active' : ''}>{ item.pageName }</a>
+                                </Link>
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </header>
     )

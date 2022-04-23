@@ -28,10 +28,17 @@
             text-decoration: none;
             font-family: 'Bebas Neue';
             letter-spacing: 0.2em;
-            transition: color 300ms;
 
-            @include hover {
+            &:global(.active) {
                 color: $MAIN_COLOR;
+            }
+
+            &:not(.active) {
+                transition: color 300ms;
+
+                @include hover {
+                    color: $MAIN_COLOR;
+                }
             }
         }
     }
