@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { VFC, useState, useEffect, useMemo } from 'react';
+import { VFC, useState, useEffect, useMemo, useRef } from 'react';
 
 import { PostItem } from '@/lib/api';
 import { Header } from '@/components/Header';
@@ -25,9 +25,14 @@ const PostPageLayout: VFC<Props> = ( { post } ) => {
     }, [post.content] );
 
     const [anchorLinkList, setAnchorLinkList] = useState<AnchorItem[]>( [] );
+    const ulElemRef = useRef<HTMLUListElement>(null);
+    const headingElemRef = useRef<HTMLHeadingElement>(null);
+    const asideElemRef = useRef<HTMLElement>(null);
+    const isIntersectingRef = useRef<boolean>(false);
 
     // 見出し部分のHTML文字列を基にアンカーリンクの一覧を生成する
     useEffect( () => {
+        // HTML文字列を基にアンカーリンクを生成する
         const anchorItemList: AnchorItem[] = headingElemList.map( ( headingElemStr ) => {
             const elem = document.createElement( 'div' );
             elem.innerHTML = headingElemStr;
@@ -46,9 +51,38 @@ const PostPageLayout: VFC<Props> = ( { post } ) => {
 
             return anchorItem;
         } );
-
         setAnchorLinkList( anchorItemList );
-    }, [headingElemList, setAnchorLinkList] );
+
+        // 記事の見出しをサイドメニュー追従の基準に設定する
+        const options = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0
+        };
+        const observer = new IntersectionObserver( ( entries ) => {
+            entries.forEach( entry => {
+                isIntersectingRef.current = entry.isIntersecting;
+            } );
+        }, options );
+
+        if (
+            headingElemRef.current
+        ) {
+            observer.observe( headingElemRef.current );
+        }
+
+        // スクロールに合わせてサイドメニューを追従させる
+        window.addEventListener( 'scroll', () => {
+            if (
+                isIntersectingRef.current === false &&
+                ulElemRef.current &&
+                asideElemRef.current
+            ) {
+                const topValue = window.scrollY - asideElemRef.current.offsetTop + 16;
+                ulElemRef.current.style.top = topValue < 0 ? '0px' : topValue + 'px';
+            }
+        } );
+    }, [headingElemList, setAnchorLinkList, ulElemRef] );
 
     return (
         <div className={styles.postPageLayout}>
@@ -60,7 +94,7 @@ const PostPageLayout: VFC<Props> = ( { post } ) => {
 
             <main className={styles.postPageLayout__main}>
                 <p className={styles.postPageLayout__date}>{post.date}</p>
-                <PageHeading headingText={post.title} isPostPage={true} />
+                <PageHeading headingText={post.title} isPostPage={true} _ref={headingElemRef} />
 
                 <div className={styles.postPageLayout__contents}>
                     <article className={styles.postPageLayout__article}>
@@ -71,8 +105,11 @@ const PostPageLayout: VFC<Props> = ( { post } ) => {
                             dangerouslySetInnerHTML={{ __html: post.content }} />
                     </article>
 
-                    <aside className={styles.postPageLayout__side}>
-                        <ul className={styles.postPageLayout__sideList}>
+                    <aside className={styles.postPageLayout__side} ref={asideElemRef}>
+                        <ul
+                            className={styles.postPageLayout__sideList}
+                            ref={ulElemRef}
+                        >
                             {
                                 anchorLinkList && anchorLinkList.map( ( item: AnchorItem ) => {
                                     return (
