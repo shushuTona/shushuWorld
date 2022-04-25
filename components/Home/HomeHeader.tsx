@@ -12,6 +12,9 @@ const HomeHeader = () => {
                 <li className={styles.homeHeader__listItem}>
                     <Link href="/blog">BLOG</Link>
                 </li>
+                <li className={styles.homeHeader__listItem}>
+                    <a href="https://github.com/shushuTona" target="_blank" rel='noreferrer'>Github</a>
+                </li>
             </ul>
         </header>
     )
