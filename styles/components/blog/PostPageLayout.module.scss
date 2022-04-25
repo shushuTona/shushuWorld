@@ -224,9 +224,51 @@
             display: none;
 
             @include desktop {
-                display: block;
                 margin: 0 0 0 28px;
                 width: 300px;
+                display: block;
+            }
+
+            .postPageLayout__sideList {
+                padding: 16px;
+                max-height: 400px;
+                border: 1px solid $MAIN_COLOR;
+                border-radius: 8px;
+                overflow-y: auto;
+
+                a {
+                    text-decoration: none;
+                    color: $TEXT_COLOR;
+                    transition: color 300ms;
+
+                    @include hover() {
+                        color: $MAIN_COLOR;
+                    }
+                }
+
+                li {
+                    padding: 0 0 0 16px;
+                    position: relative;
+
+                    &::before {
+                        content: "";
+                        width: 4px;
+                        height: 4px;
+                        background-color: $LINK_COLOR;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 10px;
+                        left: 0;
+                    }
+
+                    & + li {
+                        margin-top: 8px;
+                    }
+                }
+
+                .postPageLayout__listChildItem {
+                    margin-left: 16px;
+                }
             }
         }
     }

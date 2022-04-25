@@ -13,6 +13,7 @@ body {
     color: $TEXT_COLOR;
     font-family: 'Noto Sans JP', sans-serif;
     letter-spacing: 0.02em;
+    scroll-behavior: smooth;
 
     @include desktop {
         font-size: 16px;
