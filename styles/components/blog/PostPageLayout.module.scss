@@ -58,6 +58,13 @@
                     font-weight: normal;
                 }
 
+                h4 {
+                    margin: 24px 0 16px;
+                    font-size: 20px;
+                    color: $TEXT_COLOR;
+                    font-weight: normal;
+                }
+
                 hr {
                     margin: 32px 0;
                     border: none;
@@ -233,7 +240,7 @@
             .postPageLayout__sideList {
                 padding: 16px;
                 width: 100%;
-                max-height: 400px;
+                max-height: 500px;
                 border: 1px solid $MAIN_COLOR;
                 border-radius: 8px;
                 overflow-y: auto;
@@ -273,8 +280,12 @@
                     }
                 }
 
-                .postPageLayout__listChildItem {
+                .postPageLayout__listItem3 {
                     margin-left: 16px;
+                }
+
+                .postPageLayout__listItem4 {
+                    margin-left: 32px;
                 }
             }
         }

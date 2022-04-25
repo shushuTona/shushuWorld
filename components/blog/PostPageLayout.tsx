@@ -112,9 +112,27 @@ const PostPageLayout: VFC<Props> = ( { post } ) => {
                         >
                             {
                                 anchorLinkList && anchorLinkList.map( ( item: AnchorItem ) => {
+                                    let headingClassName = '';
+                                    switch ( item.tag ) {
+                                        case 'h2':
+                                            headingClassName = styles.postPageLayout__listItem2;
+                                            break;
+
+                                        case 'h3':
+                                            headingClassName = styles.postPageLayout__listItem3;
+                                            break;
+
+                                        case 'h4':
+                                            headingClassName = styles.postPageLayout__listItem4;
+                                            break;
+
+                                        default:
+                                            break;
+                                    }
+
                                     return (
                                         <li
-                                            className={( item.tag === 'h2' ) ? styles.postPageLayout__listItem : styles.postPageLayout__listChildItem}
+                                            className={ headingClassName }
                                             key={item.anchorLink}
                                         >
                                             <a href={item.anchorLink}>
