@@ -24,7 +24,7 @@
     animation-timing-function: ease-in;
     animation-fill-mode: both;
     position: relative;
-    z-index: 2;
+    z-index: 1000;
 
     @include desktop {
         font-size: 100px;
