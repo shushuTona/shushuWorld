@@ -100,7 +100,7 @@ pollフェーズが完了した後に、実行するコールバックをlibuv A
 
 ### close callbacks
 
-`socket.on('close', ...)` などのcloseイベントを処理するフェーズ。
+closeイベントを処理するフェーズ。
 
 ## libuv
 
@@ -111,7 +111,7 @@ Node.jsのイベントループと全ての非同期動作を実装するC言語
 libuvが提供しているイベントループの一部ではない、`nextTickQueue`と`microTaskQueue`が存在する。
 この2つのキューにコールバックが存在する場合、各フェーズ終了後にイベントループが次のフェーズに移る前に、登録されているコールバックが全て処理される。
 
-また、`timers`や`check`のキューにコールバックが残っていた場合でも、各`setTimeout `・`setImmediate`の間に存在する`process.nextTick`や`Promise`コールバックは先に実行される。
+また、`timers`や`check`のキューにコールバックが残っていた場合でも、各`setTimeout`・`setImmediate`の間に存在する`process.nextTick`や`Promise`コールバックは先に実行される。
 
 ```javascript
 setImmediate( () => console.log( 'immediate1' ) );

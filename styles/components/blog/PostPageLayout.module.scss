@@ -40,6 +40,12 @@
 
                 p {
                     margin: 16px 0;
+
+                    code {
+                        padding: 0 2px;
+                        color: #fb8a26;
+                        font-weight: bold;
+                    }
                 }
 
                 h2 {
@@ -259,11 +265,27 @@
                 border: 1px solid $MAIN_COLOR;
                 border-radius: 8px;
                 overflow-y: auto;
-                transition: top 300ms ease-out;
-                transition-delay: 300ms;
+                transition: top 500ms ease-out;
+                transition-delay: 200ms;
                 position: absolute;
                 top: 0;
                 left: 0;
+
+                &::-webkit-scrollbar {
+                    width: 15px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background-color: #f1f1f1;
+                    border-radius: 0 8px 8px 0;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 10px;
+                    border: 4px solid transparent;
+                    background-clip: content-box;
+                    background-color: $MAIN_COLOR;
+                }
 
                 a {
                     text-decoration: none;
