@@ -14,10 +14,6 @@
 .homeHeader {
     margin: 0 auto;
     width: max-content;
-    position: fixed;
-    bottom: 22vh;
-    left: 0;
-    right: 0;
     z-index: 100;
 
     animation-name: HeaderFadeIn;
@@ -69,9 +65,5 @@
                 }
             }
         }
-    }
-
-    @include desktop {
-        //
     }
 }

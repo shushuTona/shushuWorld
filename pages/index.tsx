@@ -12,10 +12,9 @@ const Home = () => {
       </Head>
 
       <main className={styles.container}>
+        <HomeHeader />
         <HomeHeading />
       </main>
-
-      <HomeHeader />
     </>
   )
 }
