@@ -2,10 +2,6 @@
 @import '../../_mixin';
 
 .postPageLayout {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-
     .postPageLayout__main {
         margin: 0 auto;
         padding: 32px 16px;
@@ -25,6 +21,8 @@
         }
 
         .postPageLayout__article {
+            width: 100%;
+
             @include desktop {
                 width: calc(100% - 328px);
             }
